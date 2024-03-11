@@ -1,0 +1,42 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding">
+  <div>
+    <oj-input-text id="filter" class="oj-form-control-max-width-md" style="width: 20rem"
+      label-hint="Serach with any column" label-edge="inside" placeholder="Type to filter"
+      on-raw-value-changed="[[handleValueChanged]]" value="{{filter}}" clear-icon="always"></oj-input-text>
+    <oj-table id="table" aria-label="Departments Table" accessibility.row-header="depName"
+      data="[[customerDataProvider]]" scroll-policy="loadMoreOnScroll" columns-default.sortable="disabled"
+      class="demo-table-container" style="width: 80vw; margin-top: 3rem" columns='
+      [                      
+        {"headerText": "Cusotmer Name", 
+                       "field": "customer_name",
+                       "width": "120",
+                       "id": "servicename"} ,
+                       {"headerText": "Customer Address", 
+                       "field": "customer_address",
+                       "width": "150",
+                       "id": "servicedesc"},
+                       {"headerText": "Customer Email", 
+                       "field": "customer_email",
+                       "width": "150",
+                       "id": "servicedesc"} ,
+                       {"headerText": "Customer Website", 
+                       "field": "customer_website",
+                       "width": "150",
+                       "id": "servicedesc"} ,
+                       {"headerText": "Customer Phone", 
+                       "field": "customer_phone",
+                       "width": "150",
+                       "id": "servicedesc"},
+                       {"headerText": "Customer description", 
+                       "field": "customer_description",
+                       "width": "150",
+                       "id": "servicedesc"} 
+                       
+                       ]'></oj-table>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+{
+  "jet_users": [
+    {
+      "user_name": "Ramesh",
+      "user_password": "Welcome@1",
+      "user_display_name": "Ramesh Arvapalli",
+      "user_active": "Y",
+      "user_type": "USER",
+      "id": 1
+    },
+    {
+      "user_name": "Sravani",
+      "user_password": "Welcome@1",
+      "user_display_name": "Sravs",
+      "user_active": "N",
+      "user_type": "ADMIN",
+      "id": 2
+    },
+    {
+      "user_name": "Rahul",
+      "user_password": "Welcome@1",
+      "user_display_name": "Rahul",
+      "user_active": "Y",
+      "user_type": "USER",
+      "id": 3
+    }
+  ],
+  "jet_customers": [
+    {
+      "id": 1,
+      "customer_name": "Amazon",
+      "customer_address": "Hyd , Miyapur , Telangana , India , Pin: 500082",
+      "customer_email": "support@amazon.com",
+      "customer_website": "www.amazon.com",
+      "customer_phone": "998973689",
+      "customer_description": "Amazon services"
+    },
+    {
+      "id": 2,
+      "customer_name": "Flipkart",
+      "customer_address": "Martali , Banglore , Karnataka",
+      "customer_email": "support@ekart.com",
+      "customer_website": "www.flipkart.com",
+      "customer_phone": "+916677999",
+      "customer_description": "Flipkart services"
+    }
+  ],
+  "jet_services": [
+    {
+      "service_name": "ANALYTICS",
+      "service_description": "Analytic India Udated ab",
+      "id": 1
+    },
+    {
+      "service_name": "BIA",
+      "service_description": "BIA Apps World updated",
+      "id": 2
+    },
+    {
+      "service_name": "ARCHIVE INDIA",
+      "service_description": "India Visiinr updated muted",
+      "id": 3
+    },
+    {
+      "service_name": "HR",
+      "service_description": "HR operations",
+      "id": 4
+    },
+    {
+      "service_name": "MISC",
+      "service_description": "Miscellinious",
+      "id": 5
+    },
+    {
+      "schedule_customer_fk": "Amazon",
+      "schedule_service_fk": "ARCHIVE INDIA",
+      "schedule_status": "ACTIVE",
+      "schedule_added_by": "ADMIN",
+      "schedule_date": "2023-12-12",
+      "schedule_description": "Sample test",
+      "id": 6
+    }
+  ],
+  "jet_services_schedule": [
+    {
+      "schedule_customer_fk": "Flipkart",
+      "schedule_service_fk": "ARCHIVE INDIA",
+      "schedule_status": "CLOSED",
+      "schedule_added_by": "ADMIN",
+      "schedule_date": "2023-12-31",
+      "schedule_description": "Sample Desc",
+      "id": 2
+    },
+    {
+      "schedule_customer_fk": "Flipkart",
+      "schedule_service_fk": "ARCHIVE INDIA",
+      "schedule_status": "CANCELLED",
+      "schedule_added_by": "ADMIN",
+      "schedule_date": "2023-12-12",
+      "schedule_description": "Sample service",
+      "id": 3
+    },
+    {
+      "schedule_customer_fk": "Flipkart",
+      "schedule_service_fk": "MISC",
+      "schedule_status": "CLOSED",
+      "schedule_added_by": "USER",
+      "schedule_date": "2023-12-13",
+      "id": 4
+    },
+    {
+      "schedule_customer_fk": "Amazon",
+      "schedule_service_fk": "BIA",
+      "schedule_status": "CLOSED",
+      "schedule_added_by": "ADMIN",
+      "schedule_date": "2023-12-20",
+      "schedule_description": "",
+      "id": 5
+    },
+    {
+      "schedule_customer_fk": "Flipkart",
+      "schedule_service_fk": "HR",
+      "schedule_status": "ACTIVE",
+      "schedule_added_by": "USER",
+      "schedule_date": "2023-12-12",
+      "schedule_description": "This is new Job",
+      "id": 6
+    }
+  ],
+  "jet_schedule_notes": [
+    {
+      "id": 1,
+      "schedule_fk": "Hello World",
+      "schedule_note_description": "abc",
+      "schedule_note_added_by": "abc",
+      "schedule_note_added_date": "abc"
+    },
+    {
+      "id": 2,
+      "schedule_fk": "Hello World",
+      "schedule_note_description": "abc",
+      "schedule_note_added_by": "abc",
+      "schedule_note_added_date": "abc"
+    }
+  ]
+}

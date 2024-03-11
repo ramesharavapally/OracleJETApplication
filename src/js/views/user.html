@@ -1,0 +1,87 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding">
+  <h1>Users</h1>
+
+  <div>
+    <oj-messages id="oj-messages-id" class="oj-color-invert" messages="[[messagesDataprovider]]" display="notification"
+      display-options.category="none" position='{"my":{"vertical" :"top", "horizontal": "end"}, 
+                          "at": {"vertical": "top", "horizontal": "end"},
+                          "of": "window"}'></oj-messages>
+  </div>
+
+  <div>
+    <oj-dialog id="createuser-dialog" dialog-title="Create user" aria-describedby="desc">
+      <div slot="body">
+        <oj-form-layout id="personal-information" direction="column" max-columns="2">
+          <oj-input-text id="UserName" label-hint="User Name" required="true" value="{{userName}}"></oj-input-text>
+          <oj-input-password id="password" label-hint="Password" required="true" value="{{userpasssword}}"
+            mask-icon="visible"></oj-input-password>
+          <oj-input-text id="displayName" label-hint="Display Name" required="true"
+            value="{{displayName}}"></oj-input-text>
+
+          <oj-combobox-one id="userType" value="{{userType}}" options="[[userTypeDataProvider]]" label-hint="User type"
+            label-edge="inside" class="oj-form-control-max-width-md"></oj-combobox-one>
+
+          <oj-checkboxset id="activeuser" label-edge="inside" value="{{active}}">
+            <oj-option value="Y">Active</oj-option>
+          </oj-checkboxset>
+
+
+        </oj-form-layout>
+      </div>
+      <div slot="footer">
+        <oj-button id="saveButton" on-oj-action="[[CreateUserSaveAction]]" class="rounded-button"
+          chroming="borderless">Save</oj-button>
+        <oj-button id="cancelButton" on-oj-action="[[CreateUserCancelAction]]" class="rounded-button"
+          chroming="borderless">Cancel</oj-button>
+      </div>
+    </oj-dialog>
+  </div>
+
+  <div>
+    <oj-button id="btnGo" on-oj-action="[[openDialogueListener]]" class="rounded-button" chroming="borderless">Create
+      User</oj-button>
+  </div>
+
+  <div id="componentDemoContent">
+
+    <oj-table id="table" aria-label="User Table" class="oj-table-container oj-component"
+      style="height: 45vh;width: 85vw;" aria-label="User Table" data="[[userDataProvider]]"
+      selection-mode='{"row": "single"}' scroll-policy="loadMoreOnScroll" scroll-policy-options='{"fetchSize": 10}'
+      on-selected-changed="[[UserselectedChangedListener]]" columns='[      
+             {"headerText": "User Action", 
+              "field": "id",               
+              "template": "userTemplate",
+              "id": "updateusertemplate-id1"
+              },  
+            {"headerText": "User Name",
+             "field": "user_name",
+             "id": "username"},
+            {"headerText": "User Description",
+             "field": "user_display_name",
+             "id": "userdsc"},
+            {"headerText": "User Active",
+             "field": "user_active",
+             "id": "useractive"},
+            {"headerText": "User Type",
+             "field": "user_type",
+             "id": "Usertype"}
+             ]'>
+      <template slot="userTemplate" data-oj-as="cell">
+        <oj-button id="updatebtn" on-oj-action="[[openUpdateDialogueListener]]" chroming="borderless" class="img_table">
+          <oj-avatar id="jpg" role="img" aria-label="Avatar" size="xxs" slot="startIcon"
+            src="css/images/edit_24.png"></oj-avatar>
+        </oj-button>
+        <oj-button id="deletebtn" on-oj-action="[[openDeleteDialogueListener]]" chroming="borderless" class="img_table">
+          <oj-avatar id="jpg" role="img" aria-label="Avatar" size="xxs" slot="startIcon"
+            src="css/images/delete_24.png"></oj-avatar>
+        </oj-button>
+      </template>
+    </oj-table>
+  </div>
+
+</div>

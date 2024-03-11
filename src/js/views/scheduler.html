@@ -1,0 +1,181 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding">
+
+  <div>
+    <oj-messages id="oj-messages-id" class="oj-color-invert" messages="[[messagesDataprovider]]" display="notification"
+      display-options.category="none" position='{"my":{"vertical" :"top", "horizontal": "end"}, 
+                          "at": {"vertical": "top", "horizontal": "end"},
+                          "of": "window"}'></oj-messages>
+  </div>
+
+
+
+  <div>
+    <oj-dialog id="updateScheduleDialogue" dialog-title="{{updateScheduleTitle}}" aria-describedby="desc">
+      <div slot="body" class="popupContainer">
+        <oj-input-text id="update-scheduleid" value="{{currentScheduleId}}" label-hint="Schedule ID" label-edge="inside"
+          readonly="true" class="schPopupFlexItem" disabled="true" style="display: none;"></oj-input-text>
+        <oj-combobox-one id="update-cust-name-id" value="{{currentCustomerName}}" options="[[customerDataProvider]]"
+          label-hint="Customer Name" label-edge="inside" class="schPopupFlexItem"></oj-combobox-one>
+        <oj-combobox-one id="update-service-name-id" value="{{currentServiceName}}" options="[[ServiceDataProvider]]"
+          label-hint="Service Name" label-edge="inside" class="schPopupFlexItem"></oj-combobox-one>
+        <oj-combobox-one id="update-schedule-status-id" value="{{currentScheduelStatus}}" options="[[statusArray]]"
+          label-hint="Schedule Status" label-edge="inside" class="schPopupFlexItem"></oj-combobox-one>
+        <oj-combobox-one id="update-schedule-addred-by-id" value="{{currentScheduleAddedBy}}"
+          options="[[userDataProvider]]" label-hint="User Type" label-edge="inside"
+          class="schPopupFlexItem"></oj-combobox-one>
+      </div>
+      <div slot="footer">
+        <oj-button id="okButton" on-oj-action="[[updatesaveAction]]">Save</oj-button>
+        <oj-button id="cancelButton" on-oj-action="[[updatecancelAction]]">Cancel</oj-button>
+      </div>
+    </oj-dialog>
+  </div>
+
+  <div>
+    <oj-dialog id="createScheduleDialogue" dialog-title="Create Schedule" aria-describedby="desc">
+      <div slot="body">
+        <div class="popupContainer">
+          <oj-combobox-one id="create-cust-name-id" value="{{createSCustomerName}}" options="[[customerDataProvider]]"
+            label-hint="Customer Name" label-edge="inside" class="schPopupFlexItem"></oj-combobox-one>
+          <oj-combobox-one id="create-service-name-id" value="{{createServiceName}}" options="[[ServiceDataProvider]]"
+            label-hint="Service Name" label-edge="inside" class="schPopupFlexItem"></oj-combobox-one>
+          <oj-combobox-one id="create-schedule-status-id" value="{{createScheduelStatus}}" options="[[statusArray]]"
+            label-hint="Schedule Status" label-edge="inside" class="schPopupFlexItem"></oj-combobox-one>
+          <oj-combobox-one id="create-schedule-addred-by-id" value="{{createScheduleAddedBy}}"
+            options="[[userDataProvider]]" label-hint="User Type" label-edge="inside"
+            class="schPopupFlexItem"></oj-combobox-one>
+          <oj-input-date id="createDate" label-hint="Schedule date" value="{{createScheuleDate}}"
+            min="[[scheduleMinDate]]" max="[[scheduleMaxDate]]" autocomplete="off" class="dateItem"></oj-input-date>
+        </div>
+
+        <div>
+          <oj-text-area id="crate-schedule-desc" value="{{createScheduleDec}}" rows="3" label-hint="Service Desc"
+            style="margin-top: 5px;"></oj-text-area>
+
+          <!-- <oj-input-text id="crate-schedule-desc" value="{{createScheduleDec}}" label-hint="Service Desc"
+            label-edge="inside" style="margin-top: 1rem; height: 7rem; resize: vertical;"></oj-input-text> -->
+        </div>
+      </div>
+
+
+
+      <div slot="footer">
+        <oj-button id="okButton" on-oj-action="[[createsaveAction]]">Save</oj-button>
+        <oj-button id="cancelButton" on-oj-action="[[createcancelAction]]">Cancel</oj-button>
+      </div>
+    </oj-dialog>
+  </div>
+
+  <div>
+    <oj-dialog id="deleteScheduleDialogue" dialog-title="Delete Schedule " aria-describedby="desc">
+      <div slot="body">
+        Do you want to delete (Schedule ID:<oj-bind-text value="[[currentScheduleId]]"></oj-bind-text> Schedule
+        Status:<oj-bind-text value="[[currentScheduelStatus]]"></oj-bind-text>) ??
+      </div>
+      <div slot="footer">
+        <oj-button id="okButton" on-oj-action="[[deletesaveAction]]">Delete</oj-button>
+        <oj-button id="okButton" on-oj-action="[[deletecancelAction]]">Cancel</oj-button>
+      </div>
+    </oj-dialog>
+  </div>
+
+  <div>
+    <oj-dialog id="closeScheduleDialogue" dialog-title="Close Schedule " aria-describedby="desc">
+      <div slot="body">
+        Do you want to Close (Schedule ID:<oj-bind-text value="[[currentScheduleId]]"></oj-bind-text> Schedule
+        Status:<oj-bind-text value="[[currentScheduelStatus]]"></oj-bind-text>) ??
+      </div>
+      <div slot="footer">
+        <oj-button id="okButton" on-oj-action="[[closesaveAction]]">Save</oj-button>
+        <oj-button id="okButton" on-oj-action="[[closecancelAction]]">Cancel</oj-button>
+      </div>
+    </oj-dialog>
+  </div>
+
+
+
+  <div class="schContainer">
+    <oj-combobox-one id="status" value="{{statusType}}" options="[[statusDataProvider]]" label-hint="Status"
+      label-edge="inside" class="oj-form-control-max-width-md schFlexItem"></oj-combobox-one>
+    <oj-combobox-one id="CustomerId" value="{{customer}}" options="[[customerDataProvider]]" label-hint="Customer"
+      label-edge="inside" class="oj-form-control-max-width-md schFlexItem"></oj-combobox-one>
+    <oj-combobox-one id="ServiceId" value="{{servicename}}" options="[[ServiceDataProvider]]" label-hint="Service"
+      label-edge="inside" class="oj-form-control-max-width-md schFlexItem"></oj-combobox-one>
+
+    <div class="dateContainer">
+      <!-- <oj-label for="fromDate">Start Date</oj-label> -->
+      <oj-input-date id="fromDate" label-hint="start date" value="{{fromDate}}" autocomplete="off"
+        class="dateItem"></oj-input-date>
+      <!-- <oj-label for="fromDate">Start Date</oj-label> -->
+      <oj-input-date id="toDate" label-hint="To date" value="{{toDate}}" autocomplete="off"
+        class="dateItem"></oj-input-date>
+    </div>
+    <div class="demoButton">
+      <oj-button id="refreshbtn" on-oj-action="[[refreshListener]]" chroming="callToAction">
+        <oj-avatar id="jpg" role="img" aria-label="Avatar" size="xxs" slot="startIcon"
+          src="css/images/refresh_24.png"></oj-avatar>
+      </oj-button>
+    </div>
+
+
+  </div>
+  <div>
+    <oj-button id="addSchuleBtn" on-oj-action="[[addScheduleListener]]" chroming="callToAction">Add Schedule
+    </oj-button>
+  </div>
+  <div>
+    <oj-table id="table" aria-label="Schedule Table" class="oj-table-container oj-component"
+      data="[[scheduleDataProvider]]" selection-mode='{"row": "single"}' scroll-policy="loadMoreOnScroll"
+      scroll-policy-options='{"fetchSize": 10}' style="width: 80vw;"
+      on-selected-changed="[[UserselectedChangedListener]]" columns='[      
+             {"headerText": "User Action", 
+              "field": "id",               
+              "template": "userTemplate",
+              "id": "updateusertemplate-id1"
+              },  
+            {"headerText": "Customer",
+             "field": "schedule_customer_fk",
+             "id": "schedulecustomer"},
+            {"headerText": "Service",
+             "field": "schedule_service_fk",
+             "id": "scheduleservice"},
+            {"headerText": "Status",
+             "field": "schedule_status",
+             "id": "schedulestatus"},
+            {"headerText": "Description",
+             "field": "schedule_description",
+             "id": "scheduledesc"},
+             {"headerText": "Schedule date",
+             "field": "schedule_date",
+             "id": "scheduledate"},
+             {"headerText": "Added By",
+             "field": "schedule_added_by",
+             "id": "scheduleadded"}
+             ]'>
+      <template slot="userTemplate" data-oj-as="cell">
+        <oj-bind-if test="[[cell.row.schedule_status != 'CLOSED' && cell.row.schedule_status != 'CANCELLED']]">
+          <oj-button id="updatebtn" on-oj-action="[[openUpdateDialogueListener]]" chroming="borderless"
+            class="img_table">
+            <oj-avatar id="update-jpg" role="img" aria-label="Avatar" size="xxs" slot="startIcon"
+              src="css/images/edit_24.png"></oj-avatar>
+          </oj-button>
+          <oj-button id="deletebtn" on-oj-action="[[openCancelDialogueListener]]" chroming="borderless"
+            class="img_table">
+            <oj-avatar id="cancel-jpg" role="img" aria-label="Avatar" size="xxs" slot="startIcon"
+              src="css/images/cancel_24.png"></oj-avatar>
+          </oj-button>
+          <oj-button id="close-btn" on-oj-action="[[openCloseDialogueListener]]" chroming="borderless"
+            class="img_table">
+            <oj-avatar id="close-jpg" role="img" aria-label="Avatar" size="xxs" slot="startIcon"
+              src="css/images/ok_24.png"></oj-avatar>
+          </oj-button>
+        </oj-bind-if>
+      </template>
+    </oj-table>
+  </div>
+</div>

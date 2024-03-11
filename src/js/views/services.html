@@ -1,0 +1,113 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding">
+  <h1>Services</h1>
+
+  <div>
+    <oj-messages id="oj-messages-id" class="oj-color-invert" messages="[[messagesDataprovider]]" display="notification"
+      display-options.category="none" position='{"my":{"vertical" :"top", "horizontal": "end"}, 
+                          "at": {"vertical": "top", "horizontal": "end"},
+                          "of": "window"}'></oj-messages>
+  </div>
+
+  <div>
+    <oj-dialog id="modalDialog1" dialog-title="Create Service" aria-describedby="desc" class="popup">
+      <div slot="body">
+        <oj-input-text id="servicename-id" value="{{servicename}}" label-hint="Service Name"
+          label-edge="inside"></oj-input-text>
+        <br>
+        <br>
+        <oj-input-text id="servicedesc-id" value="{{servicedesc}}" label-hint="Service Description"
+          label-edge="inside"></oj-input-text>
+      </div>
+      <div slot="footer">
+        <oj-button id="okButton" on-oj-action="[[saveAction]]" class="rounded-button"
+          chroming="borderless">Save</oj-button>
+        <oj-button id="okButton" on-oj-action="[[cancelAction]]" class="rounded-button"
+          chroming="borderless">Cancel</oj-button>
+      </div>
+    </oj-dialog>
+  </div>
+
+
+  <div>
+    <oj-dialog id="updateServiceDialogue" dialog-title="Update Service" aria-describedby="desc">
+      <div slot="body">
+        <oj-input-text id="update-servicid" value="{{updateservicenameid}}" label-hint="Service ID" label-edge="inside"
+          readonly="true"></oj-input-text>
+        <br>
+        <br>
+        <oj-input-text id="update-servicename-id" value="{{updateservicename}}" label-hint="Service Name"
+          label-edge="inside" readonly="true"></oj-input-text>
+        <br>
+        <br>
+        <oj-input-text id="update-servicedesc-id" value="{{updateservicedesc}}" label-hint="Service Description"
+          label-edge="inside"></oj-input-text>
+      </div>
+      <div slot="footer">
+        <oj-button id="okButton" on-oj-action="[[updatesaveAction]]">Save</oj-button>
+        <oj-button id="okButton" on-oj-action="[[updatecancelAction]]">Cancel</oj-button>
+      </div>
+    </oj-dialog>
+  </div>
+
+  <div>
+    <oj-dialog id="deleteServiceDialogue" dialog-title="Delete Service" aria-describedby="desc">
+      <div slot="body">
+        Do you want to delete (<oj-bind-text value="[[currentservicename]]"></oj-bind-text>) ??
+      </div>
+      <div slot="footer">
+        <oj-button id="okButton" on-oj-action="[[deletesaveAction]]">Delete</oj-button>
+        <oj-button id="okButton" on-oj-action="[[deletecancelAction]]">Cancel</oj-button>
+      </div>
+    </oj-dialog>
+  </div>
+
+
+  <div>
+    <oj-button id="btnGo" on-oj-action="[[openDialogueListener]]" class="rounded-button" chroming="borderless">Create
+      Service</oj-button>
+  </div>
+
+  <!-- <div id="componentDemoContent" style="width: 1px; min-width: 100%;"> -->
+  <div id="componentDemoContent">
+
+    <oj-table id="table" class='oj-table-container oj-component ' style="height: 45vh;width: 85vw;"
+      aria-label="Services Table" accessibility.row-header="service_name" data="[[dataprovider]]"
+      selection-mode='{"row": "single"}' dnd='{"reorder": {"columns": "enabled"}}' scroll-policy="loadMoreOnScroll"
+      scroll-policy-options='{"fetchSize": 10}' on-selected-changed="[[ServiceselectedChangedListener]]" columns='[
+                      
+                      {"headerText": "Service Name", 
+                       "field": "service_name",
+                       "width": "120",
+                       "id": "servicename"} ,
+                       {"headerText": "Service description", 
+                       "field": "service_description",
+                       "width": "150",
+                       "id": "servicedesc"} ,
+                       {"headerText": "Action", 
+                       "field": "id",
+                       "template": "updateTemplate",
+                       "id": "updateservicetemplate-id",
+                       "maxWidth" : "8rem"}              
+                       ]'>
+      <template slot="updateTemplate" data-oj-as="cell">
+        <oj-button id="updatebtnGo" on-oj-action="[[openUpdateDialogueListener]]" class="img_table"
+          chroming="borderless">
+          <oj-avatar id="jpg" role="img" aria-label="Avatar" size="xxs" slot="startIcon"
+            src="css/images/edit_24.png"></oj-avatar>
+        </oj-button>
+        <oj-button id="deletebtnGo" on-oj-action="[[openDeleteDialogueListener]]" class="img_table"
+          chroming="borderless">
+          <oj-avatar id="jpg" role="img" aria-label="Avatar" size="xxs" slot="startIcon"
+            src="css/images/delete_24.png"></oj-avatar>
+        </oj-button>
+      </template>
+    </oj-table>
+
+  </div>
+
+</div>
